@@ -5,7 +5,7 @@
 
 > ffmpeg required
 
-> support linux
+> linux only
 
 ## Usage
 `pip install -r requirements.txt`
@@ -13,5 +13,7 @@
 `cd twitch_recorder/`
 
 `python main.py`
+
+press q or Q in terminal to stop
 
 
