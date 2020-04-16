@@ -5,6 +5,8 @@
 
 > ffmpeg required
 
+> support linux
+
 ## Usage
 `pip install -r requirements.txt`
 
