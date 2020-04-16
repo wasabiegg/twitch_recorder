@@ -13,7 +13,7 @@ def main():
 
   url = input("streamer_url: ")
   twitch = Twitch(
-    url=url, dir_path=config["Paths"]["storage_path"] if config["Paths"]["storage_path"] != "no" else None,
+    url=url, dir_path=config["Paths"]["storage_path"] if config["Paths"]["storage_path"] != "no" else os.path.abspath(os.path.dirname(__file__)),
     proxy=None if config["DEFAULT"]["proxy"] == "no" else config["DEFAULT"]["proxy"],
     concat_or_not=False if config["DEFAULT"]["concat_or_not"] == "no" else True,
     clean_cache=False if config["DEFAULT"]["clean_cache"] == "no" else True,
