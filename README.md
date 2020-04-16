@@ -10,6 +10,6 @@
 
 `cd twitch_recorder/`
 
-'python main.py'
+`python main.py`
 
 
