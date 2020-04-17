@@ -7,3 +7,4 @@ requests==2.23.0
 tenacity==6.1.0
 terminado==0.8.3
 tqdm==4.45.0
+msvcrt

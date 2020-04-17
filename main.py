@@ -1,10 +1,39 @@
 import configparser
 import os
 import sys
-import termios
 from threading import Thread
 
+import platform
 from recorder import Twitch
+
+
+def listen_terminal(application):
+  os_type = platform.system()
+
+  if os_type == "Linux":
+    import termios
+    while application.signal:
+      fd = sys.stdin.fileno()
+      old_ttyinfo = termios.tcgetattr(fd)
+      new_ttfinfo = old_ttyinfo[:]
+      new_ttfinfo[3] &= ~termios.ICANON
+      new_ttfinfo[3] &= ~termios.ECHO
+      termios.tcsetattr(fd, termios.TCSANOW, new_ttfinfo)
+      terminal_input = os.read(fd, 7)
+
+      if terminal_input in {b'q', b'Q'}:
+        break
+  elif os_type == "Windows":
+    import msvcrt
+    while application.signal:
+      input_char = msvcrt.getch()
+      if input_char.upper() == "Q":
+        break
+  else:
+    print("didn't support your system")
+
+  print("QUIT")
+  application.signal = False
 
 
 def main():
@@ -23,18 +52,7 @@ def main():
   task1 = Thread(target=twitch.start, args=(True,))
   task1.start()
 
-  while twitch.signal:
-    fd = sys.stdin.fileno()
-    old_ttyinfo = termios.tcgetattr(fd)
-    new_ttfinfo = old_ttyinfo[:]
-    new_ttfinfo[3] &= ~termios.ICANON
-    new_ttfinfo[3] &= ~termios.ECHO
-    termios.tcsetattr(fd, termios.TCSANOW, new_ttfinfo)
-    terminal_input = os.read(fd, 7)
-
-    if terminal_input in {b'q', b'Q'}:
-      print("QUIT")
-      twitch.signal = False
+  listen_terminal(twitch)
 
 
 if __name__ == "__main__":
