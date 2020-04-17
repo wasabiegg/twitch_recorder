@@ -12,6 +12,8 @@
 
 `cd twitch_recorder/`
 
+you may want to change some setting in config.ini
+
 `python main.py`
 
 press q or Q in terminal to stop
