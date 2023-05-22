@@ -3,7 +3,7 @@ aiohttp==3.7.4
 asyncio==3.4.3
 ffmpeg-python==0.2.0
 m3u8==0.5.4
-requests==2.23.0
+requests==2.31.0
 tenacity==6.1.0
 terminado==0.8.3
 tqdm==4.45.0
