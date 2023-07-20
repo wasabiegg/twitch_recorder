@@ -1,5 +1,5 @@
 aiofile==1.5.2
-aiohttp==3.7.4
+aiohttp==3.8.5
 asyncio==3.4.3
 ffmpeg-python==0.2.0
 m3u8==0.5.4
